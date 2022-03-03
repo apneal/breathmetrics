@@ -19,7 +19,7 @@ inhaleVolumes = zeros(1,length(inhaleOnsets));
 exhaleVolumes = zeros(1,length(exhaleOnsets));
 
 for bi = 1:length(inhaleOnsets)
-    if ~isnan(inhaleOffsets(1,bi))
+    if (~isnan(inhaleOffsets(1,bi))) && (~isnan(inhaleOnsets(1,bi)))
         thisInhale = inhaleOnsets(1,bi):inhaleOffsets(1,bi);
         inhaleIntegral = sum(abs(resp(thisInhale)));
         inhaleVolumes(1,bi)=inhaleIntegral;
@@ -29,7 +29,7 @@ for bi = 1:length(inhaleOnsets)
 end
 
 for bi = 1:length(exhaleOnsets)
-    if ~isnan(exhaleOffsets(1,bi))
+    if ~isnan(exhaleOffsets(1,bi)) && ~isnan(exhaleOnsets(1,bi))
         thisExhale = exhaleOnsets(1,bi):exhaleOffsets(1,bi);
         exhaleIntegral = sum(abs(resp(thisExhale)));
         exhaleVolumes(1,bi)=exhaleIntegral;
